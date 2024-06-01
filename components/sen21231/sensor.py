@@ -6,9 +6,9 @@ from esphome.const import ICON_MOTION_SENSOR, UNIT_EMPTY
 CODEOWNERS = ["@shreyaskarnik"]
 DEPENDENCIES = ["i2c"]
 
-sen21231_sensor_ns = cg.esphome_ns.namespace("sen21231_sensor")
-Sen21231Sensor = sen21231_sensor_ns.class_(
-    "Sen21231Sensor", cg.PollingComponent, i2c.I2CDevice
+sen21231_sensor_double_ns = cg.esphome_ns.namespace("sen21231_sensor_double")
+Sen21231SensorDouble = sen21231_sensor_double_ns.class_(
+    "Sen21231SensorDouble", cg.PollingComponent, i2c.I2CDevice
 )
 
 CONFIG_SCHEMA = (
@@ -17,7 +17,7 @@ CONFIG_SCHEMA = (
     )
     .extend(
         {
-            cv.GenerateID(): cv.declare_id(Sen21231Sensor),
+            cv.GenerateID(): cv.declare_id(Sen21231SensorDouble),
         }
     )
     .extend(cv.polling_component_schema("30s"))
