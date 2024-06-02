@@ -70,9 +70,13 @@ class Sen21231Sensor : public sensor::Sensor,
   public:
     void update() override;
     void dump_config() override;
+    void people_detected(sensor::Sensor *people_sensor) { people_sensor_ = people_sensor; }
+    void people_detected_facing_forward(sensor::Sensor *people_facing_forward) { people_facing_forward_ = people_facing_forward; }
 
   protected:
     void read_data_();
+  sensor::Sensor *people_sensor_{nullptr};
+  sensor::Sensor *people_facing_forward_{nullptr};
 };
 
 } // namespace sen21231_sensor

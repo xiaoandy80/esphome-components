@@ -23,11 +23,22 @@ void Sen21231Sensor::read_data_() {
     this->read_bytes(PERSON_SENSOR_I2C_ADDRESS, (uint8_t *)&results,
                      sizeof(results));
     ESP_LOGD(TAG, "SEN21231: %d faces detected", results.num_faces);
-    this->publish_state(results.num_faces);
+//    this->publish_state(results.num_faces);
     if (results.num_faces == 1) {
         ESP_LOGD(TAG, "SEN21231: is facing towards camera: %d",
                  results.faces[0].is_facing);
     }
+    unsigned num_facing_forward = 0;
+    for (unsigned j = 0; j<results.num_faces;j++) {
+      if (results.faces[j].is_facing) {
+        num_facing_forward++;
+      }
+    }
+    if (this->people_sensor_ != nullptr)
+      this->people_sensor_->publish_state(results.num_faces);
+    if (this->people_facing_forward_ != nullptr)
+      this->people_facing_forward_->publish_state(num_facing_forward);
+    this->status_clear_warning();
 }
 
 } // namespace sen21231_sensor
