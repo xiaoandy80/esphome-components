@@ -18,7 +18,14 @@ Sen21231Sensor = sen21231_sensor_ns.class_(
 )
 
 CONF_PRESENCE = "presence_detected"
-CONF_PRESENCE_FORWARD = "facing_forward"
+CONF_PRESENCE_BOX_CONFIDENCE = "presence_box_confidence"
+CONF_PRESENCE_BOX_LEFT = "presence_box_left"
+CONF_PRESENCE_BOX_TOP= "presence_box_top"
+CONF_PRESENCE_BOX_RIGHT = "presence_box_right"
+CONF_PRESENCE_BOX_BOTTOM = "presence_box_bottom"
+CONF_PRESENCE_ID_CONFIDENCE = "presence_id_confidence"
+CONF_PRESENCE_ID = "presence_id"
+CONF_PRESENCE_FACING_CAMERA = "facing_camera"
 
 CONFIG_SCHEMA = (
     cv.Schema(
@@ -29,7 +36,42 @@ CONFIG_SCHEMA = (
                 state_class=STATE_CLASS_TOTAL,
                 icon=ICON_MOTION_SENSOR, accuracy_decimals=1,
             ),
-            cv.Optional(CONF_PRESENCE_FORWARD): sensor.sensor_schema(
+            cv.Optional(CONF_PRESENCE_BOX_CONFIDENCE): sensor.sensor_schema(
+#                device_class=DEVICE_CLASS_PRESENCE_BOX_CONFIDENCE,
+                state_class=STATE_CLASS_TOTAL,
+                icon=ICON_MOTION_SENSOR, accuracy_decimals=1,
+            ),
+            cv.Optional(CONF_PRESENCE_BOX_LEFT): sensor.sensor_schema(
+#                device_class=DEVICE_CLASS_PRESENCE_BOX_LEFT,
+                state_class=STATE_CLASS_TOTAL,
+                icon=ICON_MOTION_SENSOR, accuracy_decimals=1,
+            ),
+            cv.Optional(CONF_PRESENCE_BOX_TOP): sensor.sensor_schema(
+#                device_class=DEVICE_CLASS_PRESENCE_BOX_TOP,
+                state_class=STATE_CLASS_TOTAL,
+                icon=ICON_MOTION_SENSOR, accuracy_decimals=1,
+            ),
+            cv.Optional(CONF_PRESENCE_BOX_RIGHT): sensor.sensor_schema(
+#                device_class=DEVICE_CLASS_PRESENCE_BOX_RIGHT,
+                state_class=STATE_CLASS_TOTAL,
+                icon=ICON_MOTION_SENSOR, accuracy_decimals=1,
+            ),
+            cv.Optional(CONF_PRESENCE_BOX_BOTTOM): sensor.sensor_schema(
+#                device_class=DEVICE_CLASS_PRESENCE_BOX_BOTTOM,
+                state_class=STATE_CLASS_TOTAL,
+                icon=ICON_MOTION_SENSOR, accuracy_decimals=1,
+            ),
+            cv.Optional(CONF_PRESENCE_ID_CONFIDENCE): sensor.sensor_schema(
+#                device_class=DEVICE_CLASS_PRESENCE_ID_CONFIDENCE,
+                state_class=STATE_CLASS_TOTAL,
+                icon=ICON_MOTION_SENSOR, accuracy_decimals=1,
+            ),
+            cv.Optional(CONF_PRESENCE_ID): sensor.sensor_schema(
+#                device_class=DEVICE_CLASS_PRESENCE_ID,
+                state_class=STATE_CLASS_TOTAL,
+                icon=ICON_MOTION_SENSOR, accuracy_decimals=1,
+            ),
+            cv.Optional(CONF_PRESENCE_FACING_CAMERA): sensor.sensor_schema(
 #                device_class=DEVICE_CLASS_PRESENCE,
                 state_class=STATE_CLASS_TOTAL,
                 icon=ICON_MOTION_SENSOR, accuracy_decimals=1,
@@ -48,7 +90,27 @@ async def to_code(config):
     if CONF_PRESENCE in config:
         sens = await sensor.new_sensor(config[CONF_PRESENCE])
         cg.add(var.people_detected(sens))
-
-    if CONF_PRESENCE_FORWARD in config:
-        sens = await sensor.new_sensor(config[CONF_PRESENCE_FORWARD])
-        cg.add(var.people_detected_facing_forward(sens))
+    if CONF_PRESENCE_BOX_CONFIDENCE in config:
+        sens = await sensor.new_sensor(config[CONF_PRESENCE_BOX_CONFIDENCE])
+        cg.add(var.people_detected_box_confidence(sens))
+    if CONF_PRESENCE_BOX_LEFT in config:
+        sens = await sensor.new_sensor(config[CONF_PRESENCE_BOX_LEFT])
+        cg.add(var.people_detected_box_left(sens))
+    if CONF_PRESENCE_BOX_TOP in config:
+        sens = await sensor.new_sensor(config[CONF_PRESENCE_BOX_TOP])
+        cg.add(var.people_detected_box_top(sens))
+    if CONF_PRESENCE_BOX_RIGHT in config:
+        sens = await sensor.new_sensor(config[CONF_PRESENCE_BOX_RIGHT])
+        cg.add(var.people_detected_box_right(sens))
+    if CONF_PRESENCE_BOX_BOTTOM in config:
+        sens = await sensor.new_sensor(config[CONF_PRESENCE_BOX_BOTTOM])
+        cg.add(var.people_detected_box_bottom(sens))
+    if CONF_PRESENCE_ID_CONFIDENCE in config:
+        sens = await sensor.new_sensor(config[CONF_PRESENCE_ID_CONFIDENCE])
+        cg.add(var.people_detected_id_confidence(sens))
+    if CONF_PRESENCE_ID in config:
+        sens = await sensor.new_sensor(config[CONF_PRESENCE_ID])
+        cg.add(var.people_detected_id(sens))
+    if CONF_PRESENCE_FACING_CAMERA in config:
+        sens = await sensor.new_sensor(config[CONF_PRESENCE_FACING_CAMERA])
+        cg.add(var.people_detected_facing_camera(sens))

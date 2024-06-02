@@ -71,12 +71,26 @@ class Sen21231Sensor : public sensor::Sensor,
     void update() override;
     void dump_config() override;
     void people_detected(sensor::Sensor *people_sensor) { people_sensor_ = people_sensor; }
-    void people_detected_facing_forward(sensor::Sensor *people_facing_forward) { people_facing_forward_ = people_facing_forward; }
+    void people_detected_box_confidence(sensor::Sensor *people_box_confidence) { people_box_confidence_ = people_box_confidence; }
+    void people_detected_box_left(sensor::Sensor *people_box_left) { people_box_left_ = people_box_left; }
+    void people_detected_box_top(sensor::Sensor *people_box_top) { people_box_top_ = people_box_top; }
+    void people_detected_box_right(sensor::Sensor *people_box_right) { people_box_right_ = people_box_right; }
+    void people_detected_box_bottom(sensor::Sensor *people_box_bottom) { people_box_bottom_ = people_box_bottom; }
+    void people_detected_id_camera(sensor::Sensor *people_id_confidence) { people_id_confidence_ = people_id_confidence; }
+    void people_detected_id(sensor::Sensor *people_id) { people_id_ = people_id; }
+    void people_detected_facing_camera(sensor::Sensor *people_facing_camera) { people_facing_camera_ = people_facing_camera; }
 
   protected:
     void read_data_();
   sensor::Sensor *people_sensor_{nullptr};
-  sensor::Sensor *people_facing_forward_{nullptr};
+  sensor::Sensor *people_box_confidence_{nullptr};
+  sensor::Sensor *people_box_left_{nullptr};
+  sensor::Sensor *people_box_top_{nullptr};
+  sensor::Sensor *people_box_right_{nullptr};
+  sensor::Sensor *people_box_bottom_{nullptr};
+  sensor::Sensor *people_id_confidence_{nullptr};
+  sensor::Sensor *people_id_{nullptr};
+  sensor::Sensor *people_facing_camera_{nullptr};
 };
 
 } // namespace sen21231_sensor
