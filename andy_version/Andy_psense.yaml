@@ -1,0 +1,50 @@
+
+
+
+
+
+ESP32  SETUP
+
+.............................................................................................
+---------------------------------------------------------------------------------------------
+
+
+captive_portal:
+
+external_components:
+  - source:
+      type: local
+      path: mycomp
+    components: [sen21231]
+
+  # Example configuration entry for ESP32
+
+
+#external_components:
+#  - source:
+#      type: git
+#      url: https://github.com/shreyaskarnik/esphome-components
+#    components: [sen21231]
+    
+i2c:
+  sda: GPIO04
+  scl: GPIO05
+  scan: true
+  id: bus_a
+
+sensor:
+  - platform: sen21231
+    presence_detected:
+        name: "number of Persons Detected"
+    presence_box_left:
+        name: "Person Facing Pixel from Left to box"
+    presence_box_top:
+        name: "Person Facing Pixel from Top to box"
+    presence_box_right:
+        name: "Person Facing Pixel from Right to box"
+    presence_box_bottom:
+        name: "Person Facing Pixel from Bottom to box"
+    presence_id:
+        name: "Person Facing ID detected"
+    facing_camera:
+        name: "Person is Facing Camera"
