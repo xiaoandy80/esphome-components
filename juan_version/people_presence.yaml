@@ -1,0 +1,41 @@
+esphome:
+  name: people_presence
+
+esp32:
+  board: heltec_wifi_lora_32
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: ""
+
+ota:
+  password: ""
+
+wifi:
+  ssid: "JuanWifi"
+  password: "Adela1991!"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "People Presence Fallback Hotspot"
+    password: "kTRCotBkGOlm"
+
+captive_portal:
+i2c:
+external_components:
+#  - source:
+#      type: git
+#      url: https://github.com/juansolsona/esphome-components
+  - source: ../components/
+    components: [sen21231]
+sensor:
+  - platform: sen21231
+    presence_detected:
+        name: "Person Sensor"
+    facing_forward:
+        name: "Person Forward"
