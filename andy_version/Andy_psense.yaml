@@ -35,16 +35,20 @@ i2c:
 sensor:
   - platform: sen21231
     presence_detected:
-        name: "number of Persons Detected"
+        name: "Number of persons detected"
+    presence_box_confidence:
+        name: "Is person in box confidence"
     presence_box_left:
-        name: "Person Facing Pixel from Left to box"
+        name: "Pixel from left to persons box"
     presence_box_top:
-        name: "Person Facing Pixel from Top to box"
+        name: "Pixel from top to persons box"
     presence_box_right:
-        name: "Person Facing Pixel from Right to box"
+        name: "Pixel from right to persons box"
     presence_box_bottom:
-        name: "Person Facing Pixel from Bottom to box"
+        name: "Pixel from bottom to persons box"
+    presence_id_confidence:
+        name: "Is persons ID confidence"
     presence_id:
-        name: "Person Facing ID detected"
+        name: "Persons matching ID detected"
     facing_camera:
-        name: "Person is Facing Camera"
+        name: "Person is facing camera"
