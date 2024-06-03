@@ -9,7 +9,7 @@ from esphome.const import (
 )
 
 
-CODEOWNERS = ["@shreyaskarnik","@jsolsona"]
+CODEOWNERS = ["@shreyaskarnik","@jsolsona","@aherrmann"]
 DEPENDENCIES = ["i2c"]
 
 sen21231_sensor_ns = cg.esphome_ns.namespace("sen21231_sensor")
