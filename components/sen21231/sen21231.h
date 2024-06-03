@@ -76,7 +76,7 @@ class Sen21231Sensor : public sensor::Sensor,
     void people_detected_box_top(sensor::Sensor *people_box_top) { people_box_top_ = people_box_top; }
     void people_detected_box_right(sensor::Sensor *people_box_right) { people_box_right_ = people_box_right; }
     void people_detected_box_bottom(sensor::Sensor *people_box_bottom) { people_box_bottom_ = people_box_bottom; }
-    void people_detected_id_camera(sensor::Sensor *people_id_confidence) { people_id_confidence_ = people_id_confidence; }
+    void people_detected_id_confidence)(sensor::Sensor *people_id_confidence) { people_id_confidence_ = people_id_confidence; }
     void people_detected_id(sensor::Sensor *people_id) { people_id_ = people_id; }
     void people_detected_facing_camera(sensor::Sensor *people_facing_camera) { people_facing_camera_ = people_facing_camera; }
 
