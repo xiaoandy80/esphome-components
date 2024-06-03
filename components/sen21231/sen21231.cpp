@@ -59,4 +59,4 @@ void Sen21231Sensor::read_data_() {
 }
 
 } // namespace sen21231_sensor
-} // namespace esphome
+} // namespace esphome_
