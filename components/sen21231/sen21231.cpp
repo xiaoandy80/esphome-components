@@ -71,7 +71,7 @@ void Sen21231Sensor::read_data_() {
     if (this->people_box_confidence_ != nullptr)
       this->people_box_confidence_->publish_state(num_facing_camera);
     if (this->people_box_confidence_ != nullptr)
-      this->people_box_confidence_->publish_state(get_detected_person_name(results.faces[0].id));
+      this->people_box_confidence_->publish_state(get_detected_person_name(0));
     this->status_clear_warning();
 }
 
