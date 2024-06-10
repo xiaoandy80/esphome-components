@@ -92,7 +92,7 @@ class Sen21231Sensor : public sensor::Sensor,
   sensor::Sensor *people_id_confidence_{nullptr};
   sensor::Sensor *people_id_{nullptr};
   sensor::Sensor *people_facing_camera_{nullptr};
-  sensor::Sensor *peopl_person_name_{nullptr};
+  sensor::Sensor *people_person_name_{nullptr};
 };
 
 } // namespace sen21231_sensor
