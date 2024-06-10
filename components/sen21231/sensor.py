@@ -26,6 +26,7 @@ CONF_PRESENCE_BOX_BOTTOM = "presence_box_bottom"
 CONF_PRESENCE_ID_CONFIDENCE = "presence_id_confidence"
 CONF_PRESENCE_ID = "presence_id"
 CONF_PRESENCE_FACING_CAMERA = "facing_camera"
+CONF_PRESENCE_PERSON_NAME = "person_name"
 
 CONFIG_SCHEMA = (
     cv.Schema(
@@ -76,6 +77,11 @@ CONFIG_SCHEMA = (
                 state_class=STATE_CLASS_TOTAL,
                 icon=ICON_MOTION_SENSOR, accuracy_decimals=1,
             ),
+            cv.Optional(CONF_PRESENCE_PERSON_NAME): sensor.sensor_schema(
+#                device_class=DEVICE_CLASS_PRESENCE,
+                state_class=STATE_CLASS_TOTAL,
+                icon=ICON_MOTION_SENSOR, accuracy_decimals=1,
+            ),
         }
     )
     .extend(cv.polling_component_schema("30s"))
@@ -114,3 +120,6 @@ async def to_code(config):
     if CONF_PRESENCE_FACING_CAMERA in config:
         sens = await sensor.new_sensor(config[CONF_PRESENCE_FACING_CAMERA])
         cg.add(var.people_detected_facing_camera(sens))
+    if CONF_PRESENCE_PERSON_NAME in config:
+        sens = await sensor.new_sensor(config[CONF_PRESENCE_PERSON_NAME])
+        cg.add(var.people_detected_person_name(sens))

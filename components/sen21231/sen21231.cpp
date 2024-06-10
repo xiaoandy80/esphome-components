@@ -18,6 +18,19 @@ void Sen21231Sensor::dump_config() {
     LOG_UPDATE_INTERVAL(this);
 }
 
+const char* get_detected_person_name(int id) {
+    switch (id) {
+        case 1:
+            return "Andy";
+        case 2:
+            return "Leo";
+        case 3:
+            return "Lisa";
+        default:
+            return "Unknown";
+    }
+}
+
 void Sen21231Sensor::read_data_() {
     person_sensor_results_t results;
     this->read_bytes(PERSON_SENSOR_I2C_ADDRESS, (uint8_t *)&results,
@@ -38,7 +51,9 @@ void Sen21231Sensor::read_data_() {
         ESP_LOGD(TAG, "SEN21231: confidence it is the ID: %d",
                  results.faces[0].id_confidence);
         ESP_LOGD(TAG, "SEN21231: detected ID: %d",
-                 results.faces[0].id);
+                results.faces[0].id);
+        ESP_LOGD(TAG, "SEN21231: detected Person: %d",
+                 get_detected_person_name(results.faces[0].id));
         ESP_LOGD(TAG, "SEN21231: is facing towards camera: %d",
                  results.faces[0].is_facing);
     }
@@ -55,6 +70,8 @@ void Sen21231Sensor::read_data_() {
       //TODO 
     if (this->people_box_confidence_ != nullptr)
       this->people_box_confidence_->publish_state(num_facing_camera);
+    if (this->people_box_confidence_ != nullptr)
+      this->people_box_confidence_->publish_state(get_detected_person_name(results.faces[j].id));
     this->status_clear_warning();
 }
 

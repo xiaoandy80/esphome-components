@@ -79,6 +79,7 @@ class Sen21231Sensor : public sensor::Sensor,
     void people_detected_id_confidence(sensor::Sensor *people_id_confidence) { people_id_confidence_ = people_id_confidence; }
     void people_detected_id(sensor::Sensor *people_id) { people_id_ = people_id; }
     void people_detected_facing_camera(sensor::Sensor *people_facing_camera) { people_facing_camera_ = people_facing_camera; }
+    void people_detected_person_name(sensor::Sensor *people_person_name) { people_person_name_ = people_person_name; }
 
   protected:
     void read_data_();
@@ -91,6 +92,7 @@ class Sen21231Sensor : public sensor::Sensor,
   sensor::Sensor *people_id_confidence_{nullptr};
   sensor::Sensor *people_id_{nullptr};
   sensor::Sensor *people_facing_camera_{nullptr};
+  sensor::Sensor *peopl_person_name_{nullptr};
 };
 
 } // namespace sen21231_sensor
